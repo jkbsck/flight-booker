@@ -14,10 +14,12 @@
 </div>
 
 <% if params[:departure].present? %>
-  <%= form_with url: '/flights', local: true, method: "get" do %>
+  <%= form_with url: '/bookings/new', local: true, method: "get" do %>
     <div class="flights-list">
       <% @available_flights.map do |f| %>
         <p>
+          <%= radio_button_tag(:flight_id, f.id) %>
+          <%= hidden_field_tag(:passangers, params[:number_of_passangers]) %>
           <%= f.name %>: 
           <%= f.from_airport.airport %> -->
           <%= f.to_airport.airport %>, 
@@ -26,8 +28,6 @@
         </p>
       <% end %>
     </div>
-
-    <%= select_tag(:flight, options_for_select(@flights_options)) %>
     <%= submit_tag "SELECT FLIGHT" %>
   <% end %>
 <% elsif params[:flight].present? %>

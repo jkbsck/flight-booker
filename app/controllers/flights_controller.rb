@@ -9,6 +9,7 @@ class FlightsController < ApplicationController
       f if f.flight_date == params[:departure]
     end  
     @flights_options = @available_flights.map { |f| [ f.name, f.id ] } 
-    @flight = Flight.find(params[:flight]) if params[:flight].present?                                       
+    #@flight = Flight.find(params[:flight]) if params[:flight].present?
+    @flight = Flight.first                                     
   end
 end
