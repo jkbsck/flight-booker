@@ -1,2 +1,48 @@
 <h1>Flights#index</h1>
 <p>Find me in app/views/flights/index.html.erb</p>
+
+<%= form_with url: '/flights', local: true, method: "get" do %>
+  <%= select_tag(:from_airport_id, options_for_select(@airport_options)) %>
+  <%= select_tag(:to_airport_id, options_for_select(@airport_options)) %>
+  <%= select_tag(:number_of_passangers, options_for_select([[1,1], [2,2], [3,3], [4,4]])) %>
+  <%= select_tag(:departure, options_for_select(@date_options)) %>
+  <%= submit_tag "SEARCH" %>
+<% end %>
+
+<div class="params">
+  <%= params %>
+</div>
+
+<% if params[:departure].present? %>
+  <%= form_with url: '/flights', local: true, method: "get" do %>
+    <div class="flights-list">
+      <% @available_flights.map do |f| %>
+        <p>
+          <%= f.name %>: 
+          <%= f.from_airport.airport %> -->
+          <%= f.to_airport.airport %>, 
+          <%= f.departure.strftime('%A - %H:%M') %>, 
+          <%= f.duration %> hours
+        </p>
+      <% end %>
+    </div>
+
+    <%= select_tag(:flight, options_for_select(@flights_options)) %>
+    <%= submit_tag "SELECT FLIGHT" %>
+  <% end %>
+<% elsif params[:flight].present? %>
+  <div class="params">
+    <%= params %>
+  </div>
+  <div class="flights-list">
+    <p>
+      <%= @flight.name %>: 
+      <%= @flight.from_airport.airport %> -->
+      <%= @flight.to_airport.airport %>, 
+      <%= @flight.departure.strftime('%A - %H:%M') %>, 
+      <%= @flight.duration %> hours
+    </p>
+  </div>
+<% end %>
+
+

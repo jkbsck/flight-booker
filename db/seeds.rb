@@ -17,6 +17,16 @@ Airport.create([{ airport: 'SFO' }, { airport: 'NYC' }, { airport: 'BRA' }])
                     duration: 8,
                     from_airport: Airport.find_by_airport('SFO'),
                     to_airport: Airport.find_by_airport('BRA') },
+
+                  { name: 'A5', departure: DateTime.new(2020,10,3,12,30),
+                    duration: 8,
+                    from_airport: Airport.find_by_airport('SFO'),
+                    to_airport: Airport.find_by_airport('BRA') },
+
+                  { name: 'A4', departure: DateTime.new(2020,10,3,1,15),
+                    duration: 11,
+                    from_airport: Airport.find_by_airport('NYC'),
+                    to_airport: Airport.find_by_airport('BRA') },
                     
                   { name: 'A3', departure: DateTime.new(2020,10,5,10),
                     duration: 12,

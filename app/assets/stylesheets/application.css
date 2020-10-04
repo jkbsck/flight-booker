@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ .params {
+   background-color: rgb(255, 125, 192);
+ }
+
+ .flights-list {
+   font-weight: 800;
+   background-color: deepskyblue;
+ }
