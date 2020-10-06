@@ -1,0 +1,14 @@
+<div class="params">
+  <%= params %>
+</div>
+
+<%= @booking.flight.from_airport.airport %> -->
+<%= @booking.flight.to_airport.airport %>, 
+<%= @booking.flight.departure.strftime('%A - %H:%M') %>, 
+<%= @booking.flight.duration %> hours
+<% @booking.passengers.each do |passenger| %>
+  <p>
+    <%= passenger.name %>
+    <%= passenger.email %>
+  </p>
+<% end %>

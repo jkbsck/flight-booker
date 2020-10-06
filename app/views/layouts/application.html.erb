@@ -10,6 +10,16 @@
   </head>
 
   <body>
+
+    <% if flash.any? %>
+      <div class="navbar-flash">
+        <p class="flash">
+          <%= flash.notice %>
+          <%= flash.alert %>
+        </p>
+      </div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

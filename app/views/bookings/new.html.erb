@@ -4,3 +4,31 @@
 <div class="params">
   <%= params %>
 </div>
+
+<% if params[:flight_id].present? %>
+  <div class="flights-list">
+    <p>
+      <%= @flight.name %>: 
+      <%= @flight.from_airport.airport %> -->
+      <%= @flight.to_airport.airport %>, 
+      <%= @flight.departure.strftime('%A - %H:%M') %>, 
+      <%= @flight.duration %> hours,
+      <%= params[:passengers] %> passengers
+    </p>
+  </div>
+  <% end %>
+
+<% if @booking %>
+  <%= form_with model: @booking, local: true do |form| %>
+    <%= form.hidden_field(:flight_id, value: params[:flight_id]) %>
+      <div class="passanger-form">
+        <%= form.fields_for :passengers do |passenger_form| %>
+          <%= passenger_form.label :name %>
+          <%= passenger_form.text_field :name %>
+          <%= passenger_form.label :email %>
+          <%= passenger_form.email_field :email %><br>
+        <% end %>
+      </div>
+    <%= submit_tag "SUBMIT BOOKING" %>
+  <% end %>
+<% end %>
