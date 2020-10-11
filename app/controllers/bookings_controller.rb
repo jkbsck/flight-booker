@@ -16,7 +16,10 @@ class BookingsController < ApplicationController
       #@booking.passengers.build(booking_params)
     #end
     if @booking.save
-      @booking.passengers.each { |p| p.save }
+      @booking.passengers.each do |p|
+        p.save
+        PassengerMailer.with(user: p).confirmation_email.deliver_now
+      end
       redirect_to booking_path(@booking), notice: 'Booking saved.' +
       "#{@booking.passengers.all.count}"
     else
