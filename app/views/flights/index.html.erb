@@ -13,7 +13,7 @@
   <%= params %>
 </div>
 
-<% if params[:departure].present? %>
+<% if params[:departure].present? && @available_flights.first %>
   <%= form_with url: "/bookings/new", local: true, method: "get" do %>
     <div class="flights-list">
       <% @available_flights.map do |f| %>

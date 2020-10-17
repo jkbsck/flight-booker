@@ -8,7 +8,8 @@
 <%= @booking.flight.duration %> hours
 <% @booking.passengers.each do |passenger| %>
   <p>
-    <%= passenger.name %>
-    <%= passenger.email %>
+    Name: <%= passenger.name %><br>
+    Email: <%= passenger.email %>
   </p>
+<%= link_to 'Preview your email', '/rails/mailers/passenger_mailer/confirmation_email' %>
 <% end %>
